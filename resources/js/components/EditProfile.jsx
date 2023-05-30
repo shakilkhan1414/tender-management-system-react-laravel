@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link,useNavigate,useParams } from 'react-router-dom'
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useRef } from 'react'
 import AppStorage from '../helpers/AppStorage'
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -9,9 +9,12 @@ export const EditProfile = () => {
     const [email, setEmail]=useState('')
     const [id, setId]=useState('')
     const [userType, setUserType]=useState('')
+    const newPassword=useRef('')
+    const confirmPassword=useRef('')
 
     const [nameError,setNameError]=useState('')
     const [emailError,setEmailError]=useState('')
+    const [passwordError,setPasswordError]=useState(false)
 
     const navigate=useNavigate()
     const token= AppStorage.getToken()
@@ -54,6 +57,16 @@ export const EditProfile = () => {
             name: name,
             email: email,
             user_type: userType
+        }
+
+        if(newPassword.current.value!=''){
+            if(newPassword.current.value != confirmPassword.current.value){
+                setPasswordError(true)
+                return
+            }
+            else{
+                formData["password"] = newPassword.current.value;
+            }
         }
 
         axios.patch('/api/user/'+id,formData)
@@ -100,6 +113,17 @@ export const EditProfile = () => {
                     <label className="form-label">Email</label>
                     <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
                     {emailError && <small className='text-danger'>{emailError}</small>}
+                </div>
+
+                <div className="form-outline mb-3">
+                    <label className="form-label">New Password</label>
+                    <input type="password" className="form-control" ref={newPassword} />
+                    {passwordError && <small className='text-danger'>The password confirmation does not match.</small>}
+                </div>
+
+                <div className="form-outline mb-3">
+                    <label className="form-label">Confirm New Password</label>
+                    <input type="password" className="form-control" ref={confirmPassword} />
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-block mb-4">Update Profile</button>

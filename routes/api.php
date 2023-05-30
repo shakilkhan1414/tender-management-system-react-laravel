@@ -34,3 +34,4 @@ Route::group([
 
 Route::apiResource('/user', UserController::class);
 Route::apiResource('/tender', TenderController::class);
+Route::get('/tender/reffer/:id',[TenderController::class,'refferTender']);

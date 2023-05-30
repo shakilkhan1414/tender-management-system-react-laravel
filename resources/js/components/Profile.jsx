@@ -59,7 +59,7 @@ export const Profile = () => {
                 <div className="card">
                     <div className="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                    <img src="/assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" />
+                    <img src="/assets/img/user.png" alt="Profile" className="rounded-circle" />
                     <h2>{user.name}</h2>
                     {user.user_type && <h3 className='user_type'>{user.user_type.user_type.replace('_', ' ')}</h3>}
 
@@ -93,7 +93,7 @@ export const Profile = () => {
 
                         <div className="row">
                             <div className="col-lg-3 col-md-4 label">Location</div>
-                            <div className="col-lg-9 col-md-8">{location} <i class="bi bi-circle-fill online"></i></div>
+                            <div className="col-lg-9 col-md-8">{location} <i className="bi bi-circle-fill online"></i></div>
                         </div>
 
                         <Link to='/user/profile/edit' className='btn btn-primary mt-2'>Edit</Link>

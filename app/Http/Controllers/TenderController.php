@@ -46,7 +46,12 @@ class TenderController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $tender=Tender::find($id);
+
+        $data=[
+            'reffered_to' => $request->reffered_to
+        ];
+        $tender->update($data);
     }
 
 
@@ -58,4 +63,5 @@ class TenderController extends Controller
         }
         $tender->delete();
     }
+
 }

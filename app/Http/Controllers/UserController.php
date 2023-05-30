@@ -80,6 +80,9 @@ class UserController extends Controller
             'email'=> 'required',
             'user_type'=> 'required'
         ]);
+        if($request->password){
+            $validatedData['password']=Hash::make($request->password);
+        }
 
         $user->update($validatedData);
     }
