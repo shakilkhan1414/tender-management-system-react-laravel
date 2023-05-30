@@ -6,6 +6,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 export const index = () => {
 
     const[users,setUsers]=useState([]);
+    const[searchTerm,setSearchTerm]=useState('');
+    const [filteredUser,setFilteredUser]=useState([])
 
     const navigate=useNavigate()
 
@@ -18,6 +20,20 @@ export const index = () => {
             console.log(error)
         })
     },[])
+
+    useEffect(()=>{
+        setFilteredUser(()=>{
+            return users.filter(user=>{
+                return user.name.toLowerCase().match(searchTerm.toLowerCase()) || user.email.match(searchTerm)
+            })
+        })
+
+    },[searchTerm])
+
+    useEffect(()=>{
+        setFilteredUser(users)
+
+    },[users])
 
     const deleteUser=(id)=>{
         Swal.fire({
@@ -52,16 +68,25 @@ export const index = () => {
         })
     }
 
+
   return (
     <>
         <div className="pagetitle">
             <h1>Users</h1>
             <nav>
-                <ol className="breadcrumb">
+                <ol className="breadcrumb mb-2">
                 <li className="breadcrumb-item"><Link to='/dashboard'>Home</Link></li>
                 <li className="breadcrumb-item active">Users</li>
                 </ol>
             </nav>
+        </div>
+        <div className="row mb-2">
+            <div className="col-md-6">
+                <input type="text" className='form-control' placeholder='Search' onChange={(e) => setSearchTerm(e.target.value)}/>
+            </div>
+            <div className="col-md-6 d-flex justify-content-end">
+                <Link to='/users/create' className='btn btn-primary text-center'>Add User</Link>
+            </div>
         </div>
 
         <div className="table-responsive">
@@ -78,7 +103,7 @@ export const index = () => {
             </thead>
 
             <tbody>
-                {users.map((user,index)=>(
+                {filteredUser.map((user,index)=>(
                     <tr key={index}>
                         <th scope="row">{index+1}</th>
                         <td>{user.name}</td>
