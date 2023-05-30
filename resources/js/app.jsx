@@ -6,6 +6,10 @@ import User from './helpers/User'
 window.User=User
 import Swal from 'sweetalert2'
 window.Swal=Swal
+import Noty from 'noty';
+window.Noty = Noty
+import Notification from './helpers/Notification'
+window.Notification=Notification
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/js/bootstrap.bundle.min';
 

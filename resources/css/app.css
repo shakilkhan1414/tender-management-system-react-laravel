@@ -4,3 +4,17 @@
 body{
     overflow-x: hidden;
 }
+.user_type{
+    text-transform: capitalize;
+}
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #4154f1;
+  }

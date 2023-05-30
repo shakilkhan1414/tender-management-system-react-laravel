@@ -1,14 +1,17 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useState,useEffect } from 'react'
-import { Header } from './layouts/Header'
-import { SideBar } from './layouts/SideBar'
-import { ContentWrapper } from './layouts/ContentWrapper'
+import { Header } from './Layouts/Header'
+import { ContentWrapper } from './Layouts/ContentWrapper'
 import { Login } from './Auth/Login'
 import { Signup } from './Auth/Signup'
-import { Wrapper } from './layouts/Wrapper'
+import { Wrapper } from './Layouts/Wrapper'
 import { Dashboard } from './Dashboard'
 import { Logout } from './Auth/Logout'
+import { SideBar } from './layouts/SideBar'
+import { index as Users } from './User'
+import { create as CreateUser } from './User/create'
+import { edit as EditUser } from './User/edit'
 
 
 export const App = () => {
@@ -52,6 +55,9 @@ export const App = () => {
                 <Route path='/signup' element={<Signup/>}></Route>
                 <Route path='/dashboard' element={<Dashboard/>}></Route>
                 <Route path='/logout' element={<Logout/>}></Route>
+                <Route path='/users' element={<Users/>}></Route>
+                <Route path="/users/create" element={<CreateUser />} />
+                <Route path="/users/edit/:id" element={<EditUser />} />
             </Routes>
         </ContentWrapper>
     </Wrapper>
