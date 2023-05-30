@@ -22,6 +22,10 @@ export const view = () => {
     const tenderData=()=>{
         axios.get('/api/tender/'+id)
         .then(res=>{
+            if(res.data.reffered_to){
+                setRefferUser(res.data.reffered_to.id)
+            }
+
             setTender(res.data)
         })
         .catch(error=>{
