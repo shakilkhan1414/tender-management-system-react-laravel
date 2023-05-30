@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TenderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,4 +33,4 @@ Route::group([
 });
 
 Route::apiResource('/user', UserController::class);
-
+Route::apiResource('/tender', TenderController::class);

@@ -18,3 +18,10 @@ body{
   ::-webkit-scrollbar-thumb {
     background: #4154f1;
   }
+.online{
+    color: #00FF1B;
+    margin-left: 5px;
+    font-size: 12px;
+    display: inline-block;
+    transform: translateY(-1px);
+}

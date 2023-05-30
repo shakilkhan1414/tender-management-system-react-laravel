@@ -93,7 +93,7 @@ export const Profile = () => {
 
                         <div className="row">
                             <div className="col-lg-3 col-md-4 label">Location</div>
-                            <div className="col-lg-9 col-md-8">{location}</div>
+                            <div className="col-lg-9 col-md-8">{location} <i class="bi bi-circle-fill online"></i></div>
                         </div>
 
                         <Link to='/user/profile/edit' className='btn btn-primary mt-2'>Edit</Link>

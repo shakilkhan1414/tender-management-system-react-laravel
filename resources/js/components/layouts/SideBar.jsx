@@ -34,19 +34,19 @@ export const SideBar = () => {
         </li>
 
         <li className="nav-item">
-            <a className="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i className="bi bi-menu-button-wide"></i><span>Components</span><i className="bi bi-chevron-down ms-auto"></i>
+            <a className="nav-link collapsed" data-bs-target="#tenders-nav" data-bs-toggle="collapse" href="#">
+            <i className="bi bi-menu-button-wide"></i><span>Tenders</span><i className="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="components-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <ul id="tenders-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                <a href="components-alerts.html">
-                <i className="bi bi-circle"></i><span>Alerts</span>
-                </a>
+                <Link to="/tenders/create">
+                <i className="bi bi-circle"></i><span>Add Tender</span>
+                </Link>
             </li>
             <li>
-                <a href="components-accordion.html">
-                <i className="bi bi-circle"></i><span>Accordion</span>
-                </a>
+                <Link to="/tenders">
+                <i className="bi bi-circle"></i><span>All Tenders</span>
+                </Link>
             </li>
             </ul>
         </li>

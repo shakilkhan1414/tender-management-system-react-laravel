@@ -14,6 +14,9 @@ import { create as CreateUser } from './User/create'
 import { edit as EditUser } from './User/edit'
 import { Profile } from './Profile'
 import { EditProfile } from './EditProfile'
+import { index as Tenders } from './Tender'
+import { create as CreateTender } from './Tender/create'
+import { view as ViewTender } from './Tender/view'
 
 
 export const App = () => {
@@ -57,11 +60,17 @@ export const App = () => {
                 <Route path='/signup' element={<Signup/>}></Route>
                 <Route path='/dashboard' element={<Dashboard/>}></Route>
                 <Route path='/logout' element={<Logout/>}></Route>
+
                 <Route path='/users' element={<Users/>}></Route>
                 <Route path="/users/create" element={<CreateUser />} />
                 <Route path="/users/edit/:id" element={<EditUser />} />
+
                 <Route path="/user/profile" element={<Profile />} />
                 <Route path="/user/profile/edit" element={<EditProfile />} />
+
+                <Route path='/tenders' element={<Tenders/>}></Route>
+                <Route path="/tenders/create" element={<CreateTender />} />
+                <Route path="/tenders/:id" element={<ViewTender />} />
             </Routes>
         </ContentWrapper>
     </Wrapper>

@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Models\Tender;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,6 @@ Route::get('/', function () {
 
 Route::get('api',function(){
 
-
     $tender=Tender::with(['submittedBy','refferedTo'])->get();
     $json_string = json_encode($tender, JSON_PRETTY_PRINT);
     echo "<h2>Tenders</h2>";
@@ -40,3 +39,4 @@ Route::get('api',function(){
 Route::get('/{any}', function () {
     return view('app');
 })->where('any', '.*');
+
