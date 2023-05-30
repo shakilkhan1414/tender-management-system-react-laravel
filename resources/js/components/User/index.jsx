@@ -12,6 +12,11 @@ export const index = () => {
     const navigate=useNavigate()
 
     useEffect(()=>{
+
+        if(!User.loggedIn()){
+            navigate('/')
+        }
+
         axios.get('/api/user')
         .then((res)=>{
             setUsers((res.data))
@@ -81,10 +86,10 @@ export const index = () => {
             </nav>
         </div>
         <div className="row mb-2">
-            <div className="col-md-6">
+            <div className="col-md-5 mb-1">
                 <input type="text" className='form-control' placeholder='Search' onChange={(e) => setSearchTerm(e.target.value)}/>
             </div>
-            <div className="col-md-6 d-flex justify-content-end">
+            <div className="col-md-7 d-flex justify-content-end mb-1">
                 <Link to='/users/create' className='btn btn-primary text-center'>Add User</Link>
             </div>
         </div>

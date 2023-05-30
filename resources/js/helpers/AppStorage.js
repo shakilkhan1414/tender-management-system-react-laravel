@@ -19,13 +19,13 @@ class AppStorage{
         localStorage.removeItem('userType')
     }
     getToken(){
-        localStorage.getItem('token')
+        return localStorage.getItem('token')
     }
     getUser(){
-        localStorage.getItem('user')
+        return localStorage.getItem('user')
     }
     getUserType(){
-        localStorage.getItem('userType')
+        return localStorage.getItem('userType')
     }
 }
 

@@ -7,7 +7,7 @@ export const Header = (props) => {
 
     <div className="d-flex align-items-center justify-content-between">
       <Link to="/dashboard" className="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="" />
+        <img src="/assets/img/logo.png" alt="" />
         <span className="d-none d-lg-block">TenderPro</span>
       </Link>
       <i className="bi bi-list toggle-sidebar-btn" onClick={props.toggleSidebar}></i>
@@ -32,34 +32,34 @@ export const Header = (props) => {
         <li className="nav-item dropdown pe-3">
 
           <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" />
-            <span className="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <img src="/assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" />
+            <span className="d-none d-md-block dropdown-toggle ps-2">{localStorage.getItem('user')}</span>
           </a>
 
           <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li className="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{localStorage.getItem('user')}</h6>
+              <span className='user_type'>{localStorage.getItem('userType') && localStorage.getItem('userType').replace('_', ' ')}</span>
             </li>
             <li>
               <hr className="dropdown-divider" />
             </li>
 
             <li>
-              <a className="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <Link className="dropdown-item d-flex align-items-center" to="/user/profile">
                 <i className="bi bi-person"></i>
                 <span>My Profile</span>
-              </a>
+              </Link>
             </li>
             <li>
               <hr className="dropdown-divider" />
             </li>
 
             <li>
-              <a className="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <Link className="dropdown-item d-flex align-items-center" to="/user/profile/edit">
                 <i className="bi bi-gear"></i>
                 <span>Account Settings</span>
-              </a>
+              </Link>
             </li>
             <li>
               <hr className="dropdown-divider" />

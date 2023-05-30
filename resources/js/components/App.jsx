@@ -12,6 +12,8 @@ import { SideBar } from './layouts/SideBar'
 import { index as Users } from './User'
 import { create as CreateUser } from './User/create'
 import { edit as EditUser } from './User/edit'
+import { Profile } from './Profile'
+import { EditProfile } from './EditProfile'
 
 
 export const App = () => {
@@ -58,6 +60,8 @@ export const App = () => {
                 <Route path='/users' element={<Users/>}></Route>
                 <Route path="/users/create" element={<CreateUser />} />
                 <Route path="/users/edit/:id" element={<EditUser />} />
+                <Route path="/user/profile" element={<Profile />} />
+                <Route path="/user/profile/edit" element={<EditProfile />} />
             </Routes>
         </ContentWrapper>
     </Wrapper>
