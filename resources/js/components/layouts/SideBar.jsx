@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import AppStorage from '../../helpers/AppStorage'
 
 export const SideBar = () => {
   return (
@@ -13,6 +14,8 @@ export const SideBar = () => {
             <span>Dashboard</span>
             </Link>
         </li>
+
+        {AppStorage.getUserType()=='operating_officer' &&
 
         <li className="nav-item">
             <a className="nav-link collapsed" data-bs-target="#users-nav" data-bs-toggle="collapse" href="#">
@@ -32,6 +35,10 @@ export const SideBar = () => {
             </li>
             </ul>
         </li>
+
+        }
+
+
 
         <li className="nav-item">
             <a className="nav-link collapsed" data-bs-target="#tenders-nav" data-bs-toggle="collapse" href="#">

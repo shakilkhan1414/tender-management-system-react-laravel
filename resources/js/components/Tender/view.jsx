@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useEffect,useState } from 'react'
 import ClipLoader from "react-spinners/ClipLoader";
+import AppStorage from '../../helpers/AppStorage';
 
 export const view = () => {
     const[tender,setTender]=useState([])
@@ -83,22 +84,26 @@ export const view = () => {
                 </div>
             </div>
             <div className="col-md-6">
+            {AppStorage.getUserType()=='operating_officer' &&
             <form onSubmit={refferTender}>
-                <div className="row">
-                        <div className="col-md-8 mt-2">
-                            <select className="form-select" value={refferUser} onChange={(e) => setRefferUser(e.target.value)}>
-                                <option value="">Select Tender Reviewer</option>
-                                {filteredUsers.map((user)=>(
-                                    <option key={user.id} value={user.id}>{user.name}</option>
-                                ))}
-                            </select>
-                            {refferError && <small className='text-danger'>Select a Reviewer</small>}
-                        </div>
-                        <div className="col-md-4 mt-2">
-                            <button type="submit" className='btn btn-primary'>Reffer</button>
-                        </div>
-                </div>
-                </form>
+            <div className="row">
+                    <div className="col-md-8 mt-2">
+                        <select className="form-select" value={refferUser} onChange={(e) => setRefferUser(e.target.value)}>
+                            <option value="">Select Tender Reviewer</option>
+                            {filteredUsers.map((user)=>(
+                                <option key={user.id} value={user.id}>{user.name}</option>
+                            ))}
+                        </select>
+                        {refferError && <small className='text-danger'>Select a Reviewer</small>}
+                    </div>
+                    <div className="col-md-4 mt-2">
+                        <button type="submit" className='btn btn-primary'>Reffer</button>
+                    </div>
+            </div>
+            </form>
+
+            }
+
             </div>
         </div>
         {tender.length==0 && <div className='text-center'> <ClipLoader color="#4154f1" /></div>}

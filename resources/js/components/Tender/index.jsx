@@ -2,6 +2,7 @@ import React from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import { useEffect,useState } from 'react'
 import ClipLoader from "react-spinners/ClipLoader";
+import AppStorage from '../../helpers/AppStorage';
 
 export const index = () => {
 
@@ -19,7 +20,26 @@ export const index = () => {
 
         axios.get('/api/tender')
         .then((res)=>{
-            setTenders((res.data))
+            if(AppStorage.getUserType()=='member'){
+                setTenders(()=>{
+                    return res.data.filter((tender)=>{
+                        return tender.submitted_by.id == User.id()
+                    })
+                })
+            }
+            else if(AppStorage.getUserType()=='tender_reviewer'){
+                setTenders(()=>{
+                    return res.data.filter((tender)=>{
+                        if(tender.reffered_to){
+                            return tender.reffered_to.id == User.id()
+                        }
+                    })
+                })
+            }
+            else{
+                setTenders((res.data))
+            }
+
         })
         .catch(error=>{
             console.log(error)

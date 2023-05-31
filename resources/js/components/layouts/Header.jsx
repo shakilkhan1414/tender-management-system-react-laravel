@@ -1,12 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 export const Header = (props) => {
-    const[searchBar,setSearchBar]=useState(false)
+    const [searchBar,setSearchBar]=useState(false)
+    const navigate=useNavigate()
 
     const handleSearchBar=()=>{
         setSearchBar(!searchBar)
+    }
+
+    const handleSearch=(event)=>{
+        event.preventDefault()
+        navigate('/tenders')
     }
 
   return (
@@ -21,7 +27,7 @@ export const Header = (props) => {
     </div>
 
     <div className={`search-bar ${searchBar ? 'search-bar-show' : ''}`}>
-      <form className="search-form d-flex align-items-center" method="POST" action="#">
+      <form className="search-form d-flex align-items-center" onSubmit={handleSearch}>
         <input type="text" name="query" placeholder="Search" title="Enter search keyword" />
         <button type="submit" title="Search"><i className="bi bi-search"></i></button>
       </form>
