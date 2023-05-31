@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 export const Header = (props) => {
+    const[searchBar,setSearchBar]=useState(false)
+
+    const handleSearchBar=()=>{
+        setSearchBar(!searchBar)
+    }
+
   return (
     <header id="header" className="header fixed-top d-flex align-items-center">
 
@@ -13,7 +20,7 @@ export const Header = (props) => {
       <i className="bi bi-list toggle-sidebar-btn" onClick={props.toggleSidebar}></i>
     </div>
 
-    <div className="search-bar">
+    <div className={`search-bar ${searchBar ? 'search-bar-show' : ''}`}>
       <form className="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword" />
         <button type="submit" title="Search"><i className="bi bi-search"></i></button>
@@ -24,7 +31,7 @@ export const Header = (props) => {
       <ul className="d-flex align-items-center">
 
         <li className="nav-item d-block d-lg-none">
-          <a className="nav-link nav-icon search-bar-toggle " href="#">
+          <a onClick={handleSearchBar} className="nav-link nav-icon">
             <i className="bi bi-search"></i>
           </a>
         </li>

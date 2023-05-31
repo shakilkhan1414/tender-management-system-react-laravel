@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useState,useEffect } from 'react'
-import { Header } from './Layouts/Header'
+import { Header } from './layouts/Header'
 import { ContentWrapper } from './Layouts/ContentWrapper'
 import { Login } from './Auth/Login'
 import { Signup } from './Auth/Signup'
@@ -17,6 +17,7 @@ import { EditProfile } from './EditProfile'
 import { index as Tenders } from './Tender'
 import { create as CreateTender } from './Tender/create'
 import { view as ViewTender } from './Tender/view'
+import { NotFound } from './NotFound'
 
 
 export const App = () => {
@@ -71,6 +72,8 @@ export const App = () => {
                 <Route path='/tenders' element={<Tenders/>}></Route>
                 <Route path="/tenders/create" element={<CreateTender />} />
                 <Route path="/tenders/:id" element={<ViewTender />} />
+
+                <Route path='*' element={<NotFound/>}></Route>
             </Routes>
         </ContentWrapper>
     </Wrapper>
