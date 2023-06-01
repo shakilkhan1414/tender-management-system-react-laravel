@@ -44,7 +44,13 @@ export const Dashboard = () => {
                 let memberTenders=res.data.filter((tender)=>{
                     return tender.submitted_by.id == User.id()
                 })
-                setTenders(memberTenders.length)
+                if(memberTenders.length == 0){
+                    setTenders('0')
+                }
+                else{
+                    setTenders(memberTenders.length)
+                }
+
             }
             else if(AppStorage.getUserType()=='tender_reviewer'){
                 let refferedTenders=res.data.filter((tender)=>{
@@ -52,7 +58,12 @@ export const Dashboard = () => {
                         return tender.reffered_to.id == User.id()
                     }
                 })
-                setTenders(refferedTenders.length)
+                if(refferedTenders.length == 0){
+                    setTenders('0')
+                }
+                else{
+                    setTenders(refferedTenders.length)
+                }
             }
             else{
                 setTenders(res.data.length)
@@ -63,7 +74,13 @@ export const Dashboard = () => {
                     let memberTenders=res.data.filter((tender)=>{
                         return tender.submitted_by.id == User.id()
                     })
-                    return memberTenders.reduce((sum, tender) => sum + parseInt(tender.tender_price), 0);
+                    if(memberTenders.length==0){
+                        return '0'
+                    }
+                    else{
+                        return memberTenders.reduce((sum, tender) => sum + parseInt(tender.tender_price), 0);
+                    }
+
                 }
                 else if(AppStorage.getUserType()=='tender_reviewer'){
                     let refferedTenders=res.data.filter((tender)=>{
@@ -71,7 +88,13 @@ export const Dashboard = () => {
                             return tender.reffered_to.id == User.id()
                         }
                     })
-                    return refferedTenders.reduce((sum, tender) => sum + parseInt(tender.tender_price), 0);
+                    if(refferedTenders.length==0){
+                        return '0'
+                    }
+                    else{
+                        return refferedTenders.reduce((sum, tender) => sum + parseInt(tender.tender_price), 0);
+                    }
+                    
                 }
                 else{
                     return res.data.reduce((sum, tender) => sum + parseInt(tender.tender_price), 0);

@@ -8,6 +8,7 @@ export const Profile = () => {
     const token= AppStorage.getToken()
     const [user,setUser]=useState([])
     const [location,setLocation]=useState('')
+    const [flag,setFlag]=useState('')
 
     useEffect(()=>{
         if(!User.loggedIn()){
@@ -25,9 +26,10 @@ export const Profile = () => {
             console.log(error)
         })
 
-        axios.get('http://ip-api.com/json')
+        axios.get('https://api.ipgeolocation.io/ipgeo?apiKey=bc8a4e8294694ead8e9f70a461c6035b')
         .then(res => {
-            let locationData=res.data.city +', '+ res.data.country
+            let locationData=res.data.city +', '+ res.data.country_name
+            setFlag(res.data.country_flag)
             setLocation(locationData)
         })
         .catch((error) => {
@@ -93,7 +95,8 @@ export const Profile = () => {
 
                         <div className="row">
                             <div className="col-lg-3 col-md-4 label">Location</div>
-                            <div className="col-lg-9 col-md-8">{location} <i className="bi bi-circle-fill online"></i></div>
+                            {location ? <div className="col-lg-9 col-md-8">{location} <img className='flag' src={flag} /></div> : <div className="col-lg-9 col-md-8">Loading...</div>}
+
                         </div>
 
                         <Link to='/user/profile/edit' className='btn btn-primary mt-2'>Edit</Link>

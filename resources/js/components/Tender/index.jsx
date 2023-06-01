@@ -8,7 +8,9 @@ export const index = () => {
 
     const[tenders,setTenders]=useState([]);
     const[searchTerm,setSearchTerm]=useState('');
-    const [filteredTender,setFilteredTender]=useState([])
+    const [filteredTender,setFilteredTender]=useState([]);
+    const [isLoading, setIsLoading] =useState(true);
+    const [isEmplty,setIsEmpty]=useState(false)
 
     const navigate=useNavigate()
 
@@ -22,22 +24,41 @@ export const index = () => {
         .then((res)=>{
             if(AppStorage.getUserType()=='member'){
                 setTenders(()=>{
-                    return res.data.filter((tender)=>{
+                    let filtered=res.data.filter((tender)=>{
                         return tender.submitted_by.id == User.id()
                     })
+                    if(filtered.length==0){
+                        setIsLoading(false)
+                        setIsEmpty(true)
+                        return []
+                    }
+                    else{
+                        setIsLoading(false)
+                        return filtered
+                    }
                 })
             }
             else if(AppStorage.getUserType()=='tender_reviewer'){
                 setTenders(()=>{
-                    return res.data.filter((tender)=>{
+                    let filtered=res.data.filter((tender)=>{
                         if(tender.reffered_to){
                             return tender.reffered_to.id == User.id()
                         }
                     })
+                    if(filtered.length==0){
+                        setIsLoading(false)
+                        setIsEmpty(true)
+                        return []
+                    }
+                    else{
+                        setIsLoading(false)
+                        return filtered
+                    }
                 })
             }
             else{
                 setTenders((res.data))
+                setIsLoading(false)
             }
 
         })
@@ -148,7 +169,8 @@ export const index = () => {
 
             </tbody>
         </table>
-        {tenders.length==0 && <div className='text-center'> <ClipLoader color="#4154f1" /></div>}
+        {isLoading && <div className='text-center'> <ClipLoader color="#4154f1" /></div>}
+        {isEmplty && <p className='text-center'>No tenders Found!</p>}
     </div>
 
     </>

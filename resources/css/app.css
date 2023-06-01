@@ -25,3 +25,7 @@ body{
     display: inline-block;
     transform: translateY(-1px);
 }
+.flag{
+    width: 30px;
+    margin-left: 5px;
+}

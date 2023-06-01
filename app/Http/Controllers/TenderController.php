@@ -19,7 +19,7 @@ class TenderController extends Controller
         $validatedData=$request->validate([
             'tender_name'=> 'required',
             'tender_type'=> 'required',
-            'tender_price'=> 'required',
+            'tender_price'=> 'required | numeric',
             'tender_location'=> 'required',
             'tender_description'=> 'required',
             'tender_document'=> 'required'
