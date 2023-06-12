@@ -32,7 +32,7 @@
     </head>
 <body>
     <div>
-        <h4 class="text">Hello Tony Stark, Your Tender 'Renovation Project for ABC Corporation Headquarters' has been reffered to Rakib Khan.</h4>
+        <h4 class="text">{{$text}}</h4>
         <a href="https://tenderpro.shakildev.com/tenders/{{$id}}" target="_blank" class="btn" style="color: #ffffff">View Tender</a>
     </div>
 </body>
