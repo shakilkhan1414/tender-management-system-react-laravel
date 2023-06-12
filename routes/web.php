@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Tender;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +47,5 @@ Route::get('symlink',function(){
 Route::get('/{any}', function () {
     return view('app');
 })->where('any', '.*');
+
 

@@ -29,3 +29,7 @@ body{
     width: 30px;
     margin-left: 5px;
 }
+.spin-btn span{
+    display: inline-block;
+    margin-bottom: -4px;
+}

@@ -9,6 +9,7 @@ export const view = () => {
     const[filteredUsers,setFilteredUsers]=useState([])
     const[refferUser,setRefferUser]=useState('')
     const[refferError,setRefferError]=useState(false)
+    const[btnText,setBtnText]=useState(false)
     const navigate=useNavigate()
     const {id}=useParams()
 
@@ -54,12 +55,19 @@ export const view = () => {
             setRefferError(true)
             return
         }
+
+        setBtnText(true)
+
         const formData={
             reffered_to: refferUser
         }
         axios.patch('/api/tender/'+id,formData)
         .then(() => {
             Notification.success()
+            setTimeout(()=>{
+                Notification.mailSent()
+            }, 500);
+
             navigate('/tenders')
         })
         .catch(error=>{
@@ -97,7 +105,7 @@ export const view = () => {
                         {refferError && <small className='text-danger'>Select a Reviewer</small>}
                     </div>
                     <div className="col-md-4 mt-2">
-                        <button type="submit" className='btn btn-primary'>Reffer</button>
+                        <button type="submit" className='btn btn-primary spin-btn'>{!btnText ? 'Reffer' : <ClipLoader color="#ffffff" size={18} />}{!btnText ? '' : ' Sending mail...' }</button>
                     </div>
             </div>
             </form>

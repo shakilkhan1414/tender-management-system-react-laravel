@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Tender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class TenderController extends Controller
 {
@@ -46,12 +47,36 @@ class TenderController extends Controller
 
     public function update(Request $request, $id)
     {
-        $tender=Tender::find($id);
+        $updateTender=Tender::find($id);
 
         $data=[
             'reffered_to' => $request->reffered_to
         ];
-        $tender->update($data);
+        $updateTender->update($data);
+
+        $tender=Tender::find($id);
+
+        $memberText='Hello '.$tender->submittedBy->name.', Your Tender \''.$tender->tender_name.'\' has been reffered to '.$tender->refferedTo->name.'.';
+
+        $mailData = array('text'=>$memberText,'id'=>$tender->id);
+
+        Mail::send('mail', $mailData, function($message) use ($tender){
+            $message->to($tender->submittedBy->email, $tender->submittedBy->name)->subject
+                ('Tender Reffered');
+            $message->from('contact@shakildev.com','Tender Pro');
+        });
+
+
+        $memberText='A new tender \''.$tender->tender_name.'\' has been reffered to you.';
+
+        $mailData = array('text'=>$memberText,'id'=>$tender->id);
+
+        Mail::send('mail', $mailData, function($message) use ($tender){
+            $message->to($tender->refferedTo->email, $tender->refferedTo->name)->subject
+                ('New Tender Reffered');
+            $message->from('contact@shakildev.com','Tender Pro');
+        });
+
     }
 
 
@@ -63,5 +88,4 @@ class TenderController extends Controller
         }
         $tender->delete();
     }
-
 }

@@ -10,6 +10,15 @@ class Notification{
          }).show();
     }
 
+    mailSent(){
+        new Noty({
+      theme: 'sunset',
+      type: 'info',
+      layout: 'topRight',
+      text: 'Mail Sent!',
+      timeout: 1500,
+         }).show();
+    }
 
     alert(){
         new Noty({
