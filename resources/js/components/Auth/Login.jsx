@@ -3,8 +3,9 @@ import { Link,useNavigate } from 'react-router-dom'
 import { useRef,useState, useEffect } from 'react'
 
 export const Login = () => {
-    const email=useRef('')
-    const password=useRef('')
+
+    const [email,setEmail]=useState('khan.shakil.1414@gmail.com')
+    const [password,setPassword]=useState('shakil123')
 
     const [emailError,setEmailError]=useState('')
     const [passwordError,setPasswordError]=useState('')
@@ -17,11 +18,19 @@ export const Login = () => {
         }
     },[])
 
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value)
+      };
+
+      const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+      };
+
     const loginHandler=(e)=>{
         e.preventDefault()
         const formData={
-            email: email.current.value,
-            password:password.current.value
+            email: email,
+            password:password
         }
 
         axios.post('/api/auth/login',formData)
@@ -61,13 +70,13 @@ export const Login = () => {
             <form onSubmit={loginHandler}>
                 <div className="form-outline mb-4">
                     <label className="form-label">Email</label>
-                    <input type="email" className="form-control" ref={email}/>
+                    <input type="email" className="form-control" value={email} onChange={handleEmailChange} />
                     {emailError && <small className='text-danger'>{emailError}</small>}
                 </div>
 
                 <div className="form-outline mb-4">
                     <label className="form-label">Password</label>
-                    <input type="password" className="form-control" ref={password}/>
+                    <input type="password" className="form-control" value={password} onChange={handlePasswordChange} />
                     {passwordError && <small className='text-danger'>{passwordError}</small>}
                 </div>
 
